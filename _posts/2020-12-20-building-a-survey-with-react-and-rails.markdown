@@ -1,13 +1,13 @@
 ---
 layout: post
-title:  "Building a survey using react and Ruby on Rails"
+title:  "Building a survey using React and Ruby on Rails"
 date:   2020-12-20 17:34:04 +0530
 categories: react
 ---
 ![form](/assets/react_rails_survey.png)
-
+[source][source]
 ## React Part
-Here is a survey response form, which makes use of Rail's nested attributes feature. The basic idea is to build a Survey component from JSON of the following structure.
+Here is a survey response form, which makes use of nested attributes feature. The basic idea is to build a Survey component from JSON of the following structure.
 
 {% highlight ruby %}
 {
@@ -43,7 +43,7 @@ Here is a survey response form, which makes use of Rail's nested attributes feat
 {% endhighlight %}
 
 We can maintain this as state for survey component and render form elements inside, based on `answertype` attribute.
-And after filling the data, Survey component shold post json of the following format.
+And after filling the data, Survey component should post json of the following format.
 
 {% highlight  ruby %}
 
@@ -464,3 +464,5 @@ end
 
 Here the `survey_json` method prepare the JSON which is a collection of questions.
 `answer_for` checks if there is an answer for a question. This is for persistance of answers for validation. `error_for` set error attributes only at `#create` action. 
+
+[source]: https://github.com/dileepnandanam/react_rails_survey
