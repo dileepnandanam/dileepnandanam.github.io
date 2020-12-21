@@ -113,7 +113,7 @@ def create
   end
 end
 {% endhighlight %}
-On successfull creation of book, the `book` element in `index.haml` is rendered with updated list of books.
+On successfull creation of book, the `books` element in `index.haml` is rendered with updated list of books.
 {% highlight haml %}
 #app/views/admin/books/_books.haml
 - books.each do |book|
