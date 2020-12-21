@@ -74,7 +74,7 @@ end
 This controller just maintain initial rendering of books collection with view
 `#app/views/admin/books/index.haml` and the rest of it will be handled by reflex actions.
 Let's dive into the views for create book.
-{% highlight ruby %}
+{% highlight haml %}
 #app/views/admin/books/index.haml
 = link_to 'Add book', '#', data: {reflex: 'click->Admin::BooksReflex#new'}, class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
 .new-book-form-container
@@ -84,7 +84,7 @@ Let's dive into the views for create book.
 Here `data: {reflex: 'click->Admin::BooksReflex#new'}` specifies which reflex action should be called on which event. Event is `click` and reflex action is `new` from `Admin::BookReflex`. We have .new-book-form-container which can hold a form. so we can execute 
 `morph '.new-book-form-container', render(partial: 'admin/books/new', locals: {book: Book.new})`
 Now `.new-book-form-container` will be rendered with `admin/books/new`
-{% highlight ruby %}
+{% highlight haml %}
 #app.views/admin/books/new
 = form_for([:admin, book], data: {reflex: 'submit->Admin::Books#create'}, html: {class: 'bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-sm mt-4'}) do |f|
   = f.label 'Name of Book', class: 'block text-gray-700 text-l font-bold'
@@ -114,7 +114,7 @@ def create
 end
 {% endhighlight %}
 On successfull creation of book, the `book` element in `index.haml` is rendered with updated list of books.
-{% highlight ruby %}
+{% highlight haml %}
 #app/views/admin/books/_books.haml
 - books.each do |book|
   .book{id: "book-#{book.id}"}
