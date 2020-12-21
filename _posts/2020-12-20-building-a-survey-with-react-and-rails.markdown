@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Build a survey using react and Ruby on Rails"
+title:  "Building a survey using react and Ruby on Rails"
 date:   2020-12-20 17:34:04 +0530
 categories: react
 ---
@@ -282,13 +282,29 @@ class Checkbox extends React.Component {
   errors: ''
 }
 {% endhighlight %}
+
 This state used for rendering, with `options.id` as `id` attribute, so that, on each click on checkbox, we find an option using `e.target.id` and mark checked attribute using the value in `e.target.checked`. Also the new state is passed to Survey Component via `update` method.
+Lets fetch the JSON from `responses/new` and render Survey
+
+{% highlight jsx %} {
+document.addEventListener('DOMContentLoaded', () => {
+  fetch('/responses/new').then(res => (res.json()))
+    .then(function(res) {
+      ReactDOM.render(
+        <Survey questions={res} />,
+        document.body.appendChild(document.createElement('div')),
+      )
+    }) 
+  })
+
+}
+{% endhighlight %}
 
 ## Rails Part
 
 Now its the rails responsibility to prepare state of Survey Component. let's make schema for questions and answer objects.
 
-{% highlight ruby %}
+{% highlight shell %}
 $ rails g model question answertype:string name:string
 $ rails g model response
 $ rails g model answer question_id:integer response_id:integer textarea:text text_$ field:string name:string
@@ -301,14 +317,12 @@ Now we can specify the relations.
 
 {% highlight ruby %}
 #models/question.rb
-
 class Question < ApplicationRecord
   has_many :options
 end
 {% endhighlight %}
 {% highlight ruby %}
 #models/response.rb
-
 class Response < ApplicationRecord
   has_many :answers
   accepts_nested_attributes_for :answers
@@ -331,7 +345,7 @@ class FieldPresenceValidator < ActiveModel::Validator
 end
 
 class Answer < ApplicationRecord
-  has_many :choices
+  has_many :choice
   belongs_to :question
   accepts_nested_attributes_for :choices
   validates_with FieldPresenceValidator
@@ -340,11 +354,10 @@ end
 For simplicity, I have added validation for each type of questions, and every question should be answered here.
 {% highlight ruby %}
 #models/choices
-
 class Choice < ApplicationRecord
 end
 {% endhighlight %}
-
+Choices defines answer for questions with `answertype` as checkbox. if answer object has a choice associated with `id` 1 means user selected "Music" and state has `{id: 1, name: 'Music', checked: true}` under options attributes.
 Let's make a Checkbox Question
 {% highlight ruby %}
 q = Question.create(name: 'likes', answertype: 'checkbox')
