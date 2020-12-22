@@ -17,7 +17,7 @@ Here is a survey response form, which makes use of nested attributes feature. Th
       answertype: 'checkbox',
       options: [
         {id: 1, name: 'Music', checked: false},
-        {id: 1, name: 'Magazines', checked: false},
+        {id: 1, name: 'Reading', checked: false},
         {id: 1, name: 'TV', checked: false}
       ],
       name: 'Your likes',

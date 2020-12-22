@@ -84,6 +84,19 @@ Let's dive into the views for create book.
 Here `data: {reflex: 'click->Admin::BooksReflex#new'}` specifies which reflex action should be called on which event. Event is `click` and reflex action is `new` from `Admin::BookReflex`. We have .new-book-form-container which can hold a form. so we can execute 
 `morph '.new-book-form-container', render(partial: 'admin/books/new', locals: {book: Book.new})`
 Now `.new-book-form-container` will be rendered with `admin/books/new`
+Here is the reflex action
+{% highlight ruby %}
+class Admin::BooksReflex < ApplicationReflex
+  delegate :current_user, to: :connection
+  delegate :render, to: ApplicationController
+
+  def new
+    book = Book.new
+    morph '.new-book-form-container', render(partial: 'admin/books/new', locals: {book: book})
+  end
+end
+{% endhighlight %}
+And we have the partial
 {% highlight haml %}
 #app.views/admin/books/new
 = form_for([:admin, book], data: {reflex: 'submit->Admin::Books#create'}, html: {class: 'bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-sm mt-4'}) do |f|
