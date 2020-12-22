@@ -5,6 +5,7 @@ date:   2020-12-20 17:34:04 +0530
 categories: react
 ---
 ![form](/assets/react_rails_survey.png)
+
 [source][source]
 ## React Part
 Here is a survey response form, which makes use of nested attributes feature. The basic idea is to build a Survey component from JSON of the following structure.
