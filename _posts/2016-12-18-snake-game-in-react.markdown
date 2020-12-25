@@ -150,19 +150,19 @@ categories: react
       if(this.checkContact(new_head,body)){
         this.setState({body: body,
            current_direction:this.state.current_direction,
-           bait_position: this.state.bait_position
+           bait_position: this.state.bait_position,
+           message: 'Use Arrow Keys'
         })
         setTimeout(function(){ this.moveSnake()}.bind(this), 400)
       }else{
           
           
-        alert("Game over")
         this.setState({body: [[5,4],[4,4],[3,4]],
               current_direction: 'down',
               bait_position:[9,6],
-              message: 'Game over'
+              message: 'Game Over'
         })
-        setTimeout(function(){ this.moveSnake()}.bind(this), 400)
+        setTimeout(function(){ this.moveSnake()}.bind(this), 2000)
         
       } 
         
@@ -196,6 +196,7 @@ categories: react
 
       return(
         <div className="snake">
+          <h1>{this.state.message}</h1>
           {board}
         </div>
       )
