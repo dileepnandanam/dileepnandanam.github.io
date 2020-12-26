@@ -41,13 +41,13 @@ categories: react
 }
 
 .block {
-  background-color: #1d1d19;
+  background-color: black;
 }
 .marked {
-  background-color: #fdd;
+  background-image: radial-gradient(yellow, black);
 }
 .bait{
-  background-color: #2f8e2f;
+  background-image: radial-gradient(white, black);
 }
 .clearfix {
   clear: both
@@ -120,11 +120,18 @@ categories: react
       }
     }
     placeBait() {
-      this.setState({
-        body: this.state.body,
-        current_direction: this.state.current_direction,
-        bait_position:[Math.floor(Math.random()*10),Math.floor(Math.random()*10)]
+
+      var bait_position = [Math.floor(Math.random()*10),Math.floor(Math.random()*10)]
+      const that = this
+      var included = false
+      this.state.body.forEach(function(e) {
+        if(bait_position[0] === e[0] && bait_position[1] === e[1])
+          included = true
       })
+      if(included)
+        this.placeBait()
+      else
+        this.setState({['bait_position']: bait_position})
     }
 
 
