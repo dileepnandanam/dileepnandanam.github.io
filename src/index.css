@@ -14,6 +14,14 @@
   -webkit-text-size-adjust: 100%;
 }
 
+#root {
+  position: fixed;
+  background-image: linear-gradient(0deg, #004, #000);
+  height: 100vh;
+  overflow: scroll;
+  width: 100%;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -24,10 +32,9 @@ a:hover {
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  margin: 0px;
+  margin-bottom: 100%;
+  min-width: 100%;
   min-height: 100vh;
 }
 
