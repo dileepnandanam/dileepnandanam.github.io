@@ -13,7 +13,7 @@ const IndexPage = () => {
       {
         Pages.map((p) => (
           <a
-            href={p.path}
+            href={`#${p.path}`}
             style={{
               display: "block",
               color: "white"

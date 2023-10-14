@@ -1,12 +1,12 @@
 import './App.css'
 import IndexPage from "src/Pages/IndexPage";
 import {
-  createBrowserRouter,
+  createHashRouter,
   RouterProvider,
 } from "react-router-dom";
 import Pages from "src/Pages";
 
-const router = createBrowserRouter([...[{
+const router = createHashRouter([...[{
   title: "Home",
   path: "/",
   element: <IndexPage />,

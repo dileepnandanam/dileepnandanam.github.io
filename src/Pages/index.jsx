@@ -41,18 +41,18 @@ const Another = () => {
 
 const Pages = [
   {
-    path: "/intro",
+    path: "intro",
     title: "Introduction",
     element: <Intro />,
   },
   {
     element: <Something />,
-    path: "/something",
+    path: "something",
     title: "Something"
   },
   {
     element: <Another />,
-    path: "/another",
+    path: "another",
     title: "Another"
   }
 ]
