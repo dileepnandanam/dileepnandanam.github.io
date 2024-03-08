@@ -1,4 +1,5 @@
 import React from "react";
+import Sketchpad from "src/components/Sketchpad";
 
 const Intro = () => {
   return(
@@ -39,6 +40,20 @@ const Another = () => {
   )
 }
 
+const Draw = () => {
+  return(
+    <>
+      <h2 className="glow">
+        Dileep's realtime draw
+      </h2>
+      <p className="glow">
+        Drag to draw
+      </p>
+      <Sketchpad />
+    </>
+  )
+}
+
 const Pages = [
   {
     path: "intro",
@@ -54,6 +69,11 @@ const Pages = [
     element: <Another />,
     path: "another",
     title: "Another"
+  },
+  {
+    element: <Draw />,
+    path: "draw",
+    title: "Draw"
   }
 ]
 

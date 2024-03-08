@@ -39,15 +39,16 @@ function App() {
             Home
           </a>
         </div>
-        <div
-          style={{
-            width: "100%",
-            padding: "12px 12px",
-            background: "#fff2"
-          }}
-        >
-          <RouterProvider router={router} />
-        </div>
+      </div>
+      <div
+        style={{
+          boxSizing: "border-box",
+          width: "100%",
+          padding: "12px 12px",
+          background: "#fff2"
+        }}
+      >
+        <RouterProvider router={router} />
       </div>
     </>
   )
