@@ -19,7 +19,6 @@ function App() {
       <div className="topbar"
         style={{
           width: "100%",
-          position: "fixed"
         }}
       >
         <div
