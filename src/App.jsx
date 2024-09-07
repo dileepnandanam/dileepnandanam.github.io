@@ -43,7 +43,6 @@ function App() {
         style={{
           boxSizing: "border-box",
           width: "100%",
-          padding: "12px 12px",
           background: "#fff2"
         }}
       >
