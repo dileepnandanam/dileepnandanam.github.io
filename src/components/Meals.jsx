@@ -1,521 +1,807 @@
 import React, { useState, useEffect } from "react";
 
 const Meals = (props) => {
+
   const commons = [
     {
-      "name": "Carrot",
-      "calories": 41,
-      "protein": 0.9,
-      "carbs": 10,
-      "fiber": 2.8,
-      "fat": 0.2,
-      "unitAmount": 10
-    },
-    {
-      "name": "Beans (Green)",
-      "calories": 31,
-      "protein": 1.8,
-      "carbs": 7,
-      "fiber": 3.4,
-      "fat": 0.1,
-      "unitAmount": 10
-    },
-    {
-      "name": "Potato",
-      "calories": 77,
-      "protein": 2,
-      "carbs": 17,
-      "fiber": 2.2,
-      "fat": 0.1,
-      "unitAmount": 10
-    },
-    {
-      "name": "Spinach",
-      "calories": 23,
-      "protein": 2.9,
-      "carbs": 3.6,
-      "fiber": 2.2,
-      "fat": 0.4,
-      "unitAmount": 10
-    },
-    {
-      "name": "Tomato",
-      "calories": 18,
-      "protein": 0.9,
-      "carbs": 3.9,
-      "fiber": 1.2,
-      "fat": 0.2,
-      "unitAmount": 10
-    },
-    {
-      "name": "Broccoli",
-      "calories": 34,
-      "protein": 2.8,
-      "carbs": 7,
-      "fiber": 2.6,
-      "fat": 0.4,
-      "unitAmount": 10
-    },
-    {
-      "name": "Cauliflower",
-      "calories": 25,
-      "protein": 1.9,
-      "carbs": 5,
-      "fiber": 2,
-      "fat": 0.3,
-      "unitAmount": 10
-    },
-    {
-      "name": "Onion",
-      "calories": 40,
-      "protein": 1.1,
-      "carbs": 9,
-      "fiber": 1.7,
-      "fat": 0.1,
-      "unitAmount": 10
-    },
-    {
-      "name": "Cabbage",
-      "calories": 25,
-      "protein": 1.3,
-      "carbs": 6,
-      "fiber": 2.5,
-      "fat": 0.1,
-      "unitAmount": 10
-    },
-    {
-      "name": "Cucumber",
-      "calories": 16,
-      "protein": 0.7,
-      "carbs": 3.6,
-      "fiber": 0.5,
-      "fat": 0.1,
-      "unitAmount": 10
-    },
-    {
-      "name": "Bell Pepper (Red)",
-      "calories": 31,
-      "protein": 1,
-      "carbs": 6,
-      "fiber": 2.1,
-      "fat": 0.3,
-      "unitAmount": 10
-    },
-    {
-      "name": "Mushroom (White)",
-      "calories": 22,
-      "protein": 3.1,
-      "carbs": 3.3,
-      "fiber": 1,
-      "fat": 0.3,
-      "unitAmount": 10
-    },
-    {
-      "name": "Full Egg",
-      "calories": 155,
-      "protein": 13,
-      "carbs": 1.1,
-      "fiber": 0,
-      "fat": 11,
+      "name": "Van payar mezhukkupuratti",
+      "weight_g": 100,
+      "calories": 109,
+      "protein": 6.2,
+      "fat": 2.4,
+      "carbs": 16.5,
+      "fiber": 2.9,
+      "minUnit": 1,
+      "maxUnit": 10,
       "unitAmount": 50
     },
     {
-      "name": "Egg White",
-      "calories": 52,
-      "protein": 11,
-      "carbs": 0.7,
-      "fiber": 0,
-      "fat": 0.2,
-      "unitAmount": 33
+      "name": "Cherupayar mezhukkupuratti",
+      "weight_g": 100,
+      "calories": 148,
+      "protein": 8.9,
+      "fat": 2.2,
+      "carbs": 23.3,
+      "fiber": 6.3,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
     },
     {
-      "name": "Egg Yolk",
-      "calories": 322,
-      "protein": 16,
+      "name": "Curd",
+      "weight_g": 100,
+      "calories": 60,
+      "protein": 3.1,
+      "fat": 4.0,
+      "carbs": 3.0,
+      "fiber": 0.0,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Sauted carrots",
+      "weight_g": 100,
+      "calories": 78,
+      "protein": 0.9,
+      "fat": 3.7,
+      "carbs": 10.2,
+      "fiber": 4.2,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Long beans mezhukkupuratti",
+      "weight_g": 100,
+      "calories": 89,
+      "protein": 3.4,
+      "fat": 4.1,
+      "carbs": 10.2,
+      "fiber": 3.2,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Sauted cabbage",
+      "weight_g": 100,
+      "calories": 54,
+      "protein": 1.3,
+      "fat": 3.3,
+      "carbs": 5.7,
+      "fiber": 2.5,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Sauted cauliflower",
+      "weight_g": 100,
+      "calories": 103,
+      "protein": 1.6,
+      "fat": 9.0,
+      "carbs": 4.3,
+      "fiber": 1.7,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Sauted brinjal",
+      "weight_g": 100,
+      "calories": 85,
+      "protein": 2.0,
+      "fat": 6.0,
+      "carbs": 6.0,
+      "fiber": 3.5,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Sauted spinach",
+      "weight_g": 100,
+      "calories": 58,
+      "protein": 2.0,
+      "fat": 4.0,
       "carbs": 3.6,
-      "fiber": 0,
-      "fat": 27,
-      "unitAmount": 107
+      "fiber": 2.5,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
     },
     {
-      "name": "Chicken Breast (Skinless)",
-      "calories": 165,
-      "protein": 31,
-      "carbs": 0,
-      "fiber": 0,
-      "fat": 3.6,
-      "unitAmount": 10
-    },
-    {
-      "name": "Chicken Thigh (Skinless)",
-      "calories": 209,
-      "protein": 26,
-      "carbs": 0,
-      "fiber": 0,
-      "fat": 10.9,
-      "unitAmount": 10
-    },
-    {
-      "name": "Beef (Lean)",
-      "calories": 250,
-      "protein": 26,
-      "carbs": 0,
-      "fiber": 0,
-      "fat": 15,
-      "unitAmount": 10
-    },
-    {
-      "name": "Pork (Lean)",
-      "calories": 242,
-      "protein": 27,
-      "carbs": 0,
-      "fiber": 0,
-      "fat": 14,
-      "unitAmount": 10
-    },
-    {
-      "name": "Lamb (Lean)",
-      "calories": 294,
-      "protein": 25,
-      "carbs": 0,
-      "fiber": 0,
-      "fat": 21,
-      "unitAmount": 10
-    },
-    {
-      "name": "Fish (Salmon, Atlantic)",
-      "calories": 208,
-      "protein": 20,
-      "carbs": 0,
-      "fiber": 0,
-      "fat": 13,
-      "unitAmount": 10
-    },
-    {
-      "name": "Fish (Tuna, Fresh)",
+      "name": "Sauted onion",
+      "weight_g": 100,
       "calories": 132,
-      "protein": 28,
-      "carbs": 0,
-      "fiber": 0,
-      "fat": 1,
-      "unitAmount": 10
+      "protein": 1.0,
+      "fat": 10.8,
+      "carbs": 7.9,
+      "fiber": 1.7,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
     },
     {
-      "name": "Shrimp",
-      "calories": 99,
-      "protein": 24,
-      "carbs": 0.2,
-      "fiber": 0,
+      "name": "Garlic fry",
+      "weight_g": 50,
+      "calories": 191,
+      "protein": 2.2,
+      "fat": 15.7,
+      "carbs": 11.4,
+      "fiber": 0.7,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Boiled whole egg",
+      "weight_g": 50,
+      "calories": 77,
+      "protein": 6.3,
+      "fat": 5.3,
+      "carbs": 0.6,
+      "fiber": 0.0,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Boiled egg white",
+      "weight_g": 50,
+      "calories": 27,
+      "protein": 5.6,
       "fat": 0.3,
-      "unitAmount": 10
+      "carbs": 0.3,
+      "fiber": 0.0,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
     },
     {
-      "name": "Lentils (Cooked)",
-      "calories": 116,
-      "protein": 9,
-      "carbs": 20,
-      "fiber": 8,
-      "fat": 0.4,
-      "unitAmount": 10
+      "name": "Fish fry",
+      "weight_g": 100,
+      "calories": 205,
+      "protein": 18.6,
+      "fat": 13.2,
+      "carbs": 3.9,
+      "fiber": 0.8,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
     },
     {
-      "name": "Chickpeas (Cooked)",
-      "calories": 164,
-      "protein": 9,
-      "carbs": 27,
-      "fiber": 7.6,
-      "fat": 2.6,
-      "unitAmount": 10
+      "name": "Alfahm chicken",
+      "weight_g": 200,
+      "calories": 283,
+      "protein": 35.8,
+      "fat": 13.1,
+      "carbs": 3.1,
+      "fiber": 1.8,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
     },
     {
-      "name": "Kidney Beans (Cooked)",
+      "name": "Butter chicken",
+      "weight_g": 100,
+      "calories": null,
+      "protein": 10.4,
+      "fat": 7.4,
+      "carbs": 3.1,
+      "fiber": 0.9,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Chicken biriyani",
+      "weight_g": 100,
+      "calories": 135,
+      "protein": 6.4,
+      "fat": 5.5,
+      "carbs": 14.3,
+      "fiber": 0.5,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Curd rice",
+      "weight_g": 100,
+      "calories": 97,
+      "protein": 2.7,
+      "fat": 4.3,
+      "carbs": 12.2,
+      "fiber": 0.3,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Vegetable pulao",
+      "weight_g": 100,
+      "calories": 108,
+      "protein": 1.9,
+      "fat": 3.0,
+      "carbs": 18.1,
+      "fiber": 1.3,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Egg rice",
+      "weight_g": 100,
+      "calories": 121,
+      "protein": 3.5,
+      "fat": 5.6,
+      "carbs": 14.9,
+      "fiber": 0.9,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Fried rice",
+      "weight_g": 100,
+      "calories": 163,
+      "protein": 3.5,
+      "fat": 4.0,
+      "carbs": 28.0,
+      "fiber": 1.2,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Chapathi",
+      "weight_g": 50,
+      "calories": 120,
+      "protein": 3.0,
+      "fat": 3.1,
+      "carbs": 20.7,
+      "fiber": 2.2,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Parotta",
+      "weight_g": 70,
+      "calories": 220,
+      "protein": 4.0,
+      "fat": 11.0,
+      "carbs": 27.0,
+      "fiber": 1.8,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Idli",
+      "weight_g": 35,
+      "calories": 39,
+      "protein": 1.6,
+      "fat": 0.2,
+      "carbs": 7.4,
+      "fiber": 0.3,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Dosa",
+      "weight_g": 60,
+      "calories": 133,
+      "protein": 2.7,
+      "fat": 3.7,
+      "carbs": 22.5,
+      "fiber": 0.9,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Appam",
+      "weight_g": 60,
+      "calories": 120,
+      "protein": 1.6,
+      "fat": 2.8,
+      "carbs": 23.0,
+      "fiber": 0.5,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Puttu",
+      "weight_g": 100,
+      "calories": 154,
+      "protein": 2.3,
+      "fat": 0.6,
+      "carbs": 35.0,
+      "fiber": 2.3,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Upma",
+      "weight_g": 100,
       "calories": 127,
-      "protein": 9,
-      "carbs": 23,
-      "fiber": 6.4,
-      "fat": 0.5,
-      "unitAmount": 10
+      "protein": 3.0,
+      "fat": 3.7,
+      "carbs": 20.0,
+      "fiber": 2.0,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
     },
     {
-      "name": "Peas (Green, Cooked)",
-      "calories": 84,
-      "protein": 5,
-      "carbs": 15,
-      "fiber": 5,
-      "fat": 0.4,
-      "unitAmount": 10
+      "name": "Poori",
+      "weight_g": 25,
+      "calories": 101,
+      "protein": 1.6,
+      "fat": 4.4,
+      "carbs": 13.6,
+      "fiber": 0.6,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Rice",
+      "weight_g": 100,
+      "calories": 130,
+      "protein": 2.7,
+      "fat": 0.3,
+      "carbs": 28.0,
+      "fiber": 0.4,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
     },
     {
       "name": "Apple",
+      "weight_g": 100,
       "calories": 52,
       "protein": 0.3,
-      "carbs": 14,
-      "fiber": 2.4,
       "fat": 0.2,
-      "unitAmount": 10
+      "carbs": 14.0,
+      "fiber": 2.4,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
     },
     {
       "name": "Banana",
+      "weight_g": 100,
       "calories": 89,
       "protein": 1.1,
-      "carbs": 23,
-      "fiber": 2.6,
       "fat": 0.3,
-      "unitAmount": 10
+      "carbs": 23.0,
+      "fiber": 2.6,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
     },
     {
       "name": "Orange",
+      "weight_g": 100,
       "calories": 47,
       "protein": 0.9,
-      "carbs": 12,
-      "fiber": 2.4,
       "fat": 0.1,
-      "unitAmount": 10
+      "carbs": 12.0,
+      "fiber": 2.4,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
     },
     {
       "name": "Mango",
+      "weight_g": 100,
       "calories": 60,
       "protein": 0.8,
-      "carbs": 15,
-      "fiber": 1.6,
       "fat": 0.4,
-      "unitAmount": 10
+      "carbs": 15.0,
+      "fiber": 1.6,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
     },
     {
       "name": "Grapes",
+      "weight_g": 100,
       "calories": 69,
       "protein": 0.7,
-      "carbs": 18,
-      "fiber": 0.9,
       "fat": 0.2,
-      "unitAmount": 10
-    },
-    {
-      "name": "Strawberries",
-      "calories": 32,
-      "protein": 0.7,
-      "carbs": 8,
-      "fiber": 2,
-      "fat": 0.3,
-      "unitAmount": 10
-    },
-    {
-      "name": "Blueberries",
-      "calories": 57,
-      "protein": 0.7,
-      "carbs": 14,
-      "fiber": 2.4,
-      "fat": 0.3,
-      "unitAmount": 10
-    },
-    {
-      "name": "Blackberries",
-      "calories": 43,
-      "protein": 1.4,
-      "carbs": 10,
-      "fiber": 5.3,
-      "fat": 0.5,
-      "unitAmount": 10
-    },
-    {
-      "name": "Raspberries",
-      "calories": 52,
-      "protein": 1.2,
-      "carbs": 12,
-      "fiber": 6.5,
-      "fat": 0.7,
-      "unitAmount": 10
+      "carbs": 18.0,
+      "fiber": 0.9,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
     },
     {
       "name": "Pineapple",
+      "weight_g": 100,
       "calories": 50,
       "protein": 0.5,
-      "carbs": 13,
-      "fiber": 1.4,
       "fat": 0.1,
-      "unitAmount": 10
-    },
-    {
-      "name": "Watermelon",
-      "calories": 30,
-      "protein": 0.6,
-      "carbs": 8,
-      "fiber": 0.4,
-      "fat": 0.2,
-      "unitAmount": 10
+      "carbs": 13.0,
+      "fiber": 1.4,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
     },
     {
       "name": "Papaya",
+      "weight_g": 100,
       "calories": 43,
       "protein": 0.5,
-      "carbs": 11,
-      "fiber": 1.7,
       "fat": 0.3,
-      "unitAmount": 10
+      "carbs": 11.0,
+      "fiber": 1.7,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
     },
     {
       "name": "Guava",
+      "weight_g": 100,
       "calories": 68,
       "protein": 2.6,
-      "carbs": 14,
+      "fat": 1.0,
+      "carbs": 14.0,
       "fiber": 5.4,
-      "fat": 1,
-      "unitAmount": 10
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
     },
     {
-      "name": "Pomegranate",
+      "name": "Watermelon",
+      "weight_g": 100,
+      "calories": 30,
+      "protein": 0.6,
+      "fat": 0.2,
+      "carbs": 8.0,
+      "fiber": 0.4,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Anar (Pomegranate)",
+      "weight_g": 100,
       "calories": 83,
       "protein": 1.7,
-      "carbs": 19,
-      "fiber": 4,
       "fat": 1.2,
-      "unitAmount": 10
+      "carbs": 19.0,
+      "fiber": 4.0,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
     },
     {
-      "name": "Kiwi",
-      "calories": 61,
-      "protein": 1.1,
-      "carbs": 15,
-      "fiber": 3,
-      "fat": 0.5,
-      "unitAmount": 10
-    },
-    {
-      "name": "Pear",
-      "calories": 57,
-      "protein": 0.4,
-      "carbs": 15,
-      "fiber": 3.1,
-      "fat": 0.1,
-      "unitAmount": 10
-    },
-    {
-      "name": "Peach",
-      "calories": 39,
-      "protein": 0.9,
-      "carbs": 10,
-      "fiber": 1.5,
+      "name": "Robusta banana",
+      "weight_g": 100,
+      "calories": 116,
+      "protein": 1.2,
       "fat": 0.3,
-      "unitAmount": 10
+      "carbs": 27.2,
+      "fiber": 1.9,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
     },
     {
-      "name": "Plum",
-      "calories": 46,
-      "protein": 0.7,
-      "carbs": 11,
-      "fiber": 1.4,
-      "fat": 0.3,
-      "unitAmount": 10
+      "name": "Alfahm chicken",
+      "weight_g": 200,
+      "calories": 283,
+      "protein": 35.8,
+      "fat": 13.1,
+      "carbs": 3.1,
+      "fiber": 1.8,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
     },
     {
-      "name": "Apricot",
-      "calories": 48,
-      "protein": 1.4,
-      "carbs": 11,
-      "fiber": 2,
-      "fat": 0.4,
-      "unitAmount": 10
-    },
-    {
-      "name": "Cherry",
-      "calories": 63,
-      "protein": 1.1,
-      "carbs": 16,
-      "fiber": 2.1,
-      "fat": 0.2,
-      "unitAmount": 10
-    },
-    {
-      "name": "Dragon Fruit",
-      "calories": 50,
-      "protein": 1.1,
-      "carbs": 11,
-      "fiber": 3,
-      "fat": 0.1,
-      "unitAmount": 10
-    },
-    {
-      "name": "Lychee",
-      "calories": 66,
-      "protein": 0.8,
-      "carbs": 17,
-      "fiber": 1.3,
-      "fat": 0.4,
-      "unitAmount": 10
-    },
-    {
-      "name": "Dates (Medjool)",
-      "calories": 277,
-      "protein": 1.8,
-      "carbs": 75,
-      "fiber": 6.7,
-      "fat": 0.2,
-      "unitAmount": 10
-    },
-    {
-      "name": "Fig",
-      "calories": 74,
-      "protein": 0.8,
-      "carbs": 19,
-      "fiber": 2.9,
-      "fat": 0.3,
-      "unitAmount": 10
-    },
-    {
-      "name": "Cantaloupe (Melon)",
-      "calories": 34,
-      "protein": 0.8,
-      "carbs": 8,
+      "name": "Butter chicken",
+      "weight_g": 100,
+      "calories": 151,
+      "protein": 10.4,
+      "fat": 7.4,
+      "carbs": 3.1,
       "fiber": 0.9,
-      "fat": 0.2,
-      "unitAmount": 10
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
     },
     {
-      "name": "Honeydew Melon",
-      "calories": 36,
-      "protein": 0.5,
-      "carbs": 9,
+      "name": "Chicken biriyani",
+      "weight_g": 100,
+      "calories": 135,
+      "protein": 6.4,
+      "fat": 5.5,
+      "carbs": 14.3,
+      "fiber": 0.5,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Curd rice",
+      "weight_g": 100,
+      "calories": 97,
+      "protein": 2.7,
+      "fat": 4.3,
+      "carbs": 12.2,
+      "fiber": 0.3,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Vegetable pulao",
+      "weight_g": 100,
+      "calories": 108,
+      "protein": 1.9,
+      "fat": 3.0,
+      "carbs": 18.1,
+      "fiber": 1.3,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Egg rice",
+      "weight_g": 100,
+      "calories": 121,
+      "protein": 3.5,
+      "fat": 5.6,
+      "carbs": 14.9,
+      "fiber": 0.9,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Fried rice",
+      "weight_g": 100,
+      "calories": 109,
+      "protein": 1.9,
+      "fat": 3.2,
+      "carbs": 18.0,
       "fiber": 0.8,
-      "fat": 0.1,
-      "unitAmount": 10
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
     },
     {
-      "name": "Avocado",
-      "calories": 160,
-      "protein": 2,
-      "carbs": 9,
-      "fiber": 7,
-      "fat": 15,
-      "unitAmount": 10
+      "name": "Puttu",
+      "weight_g": 50,
+      "calories": 97,
+      "protein": 1.4,
+      "fat": 2.4,
+      "carbs": 16.9,
+      "fiber": 1.2,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
     },
     {
-      "name": "Coconut (Flesh)",
-      "calories": 354,
-      "protein": 3.3,
-      "carbs": 15,
-      "fiber": 9,
-      "fat": 33,
-      "unitAmount": 10
+      "name": "Chappathi",
+      "weight_g": 50,
+      "calories": 122,
+      "protein": 4.3,
+      "fat": 0.6,
+      "carbs": 24.8,
+      "fiber": 3.8,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
     },
     {
-      "name": "Lemon",
-      "calories": 29,
-      "protein": 1.1,
-      "carbs": 9,
-      "fiber": 2.8,
-      "fat": 0.3,
-      "unitAmount": 10
+      "name": "Dosa",
+      "weight_g": 50,
+      "calories": 92,
+      "protein": 2.2,
+      "fat": 3.0,
+      "carbs": 14.1,
+      "fiber": 0.8,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
     },
     {
-      "name": "Lime",
-      "calories": 30,
-      "protein": 0.7,
-      "carbs": 11,
-      "fiber": 2.8,
+      "name": "Idli",
+      "weight_g": 100,
+      "calories": 146,
+      "protein": 4.5,
+      "fat": 0.7,
+      "carbs": 30.4,
+      "fiber": 2.6,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Pathiri",
+      "weight_g": 50,
+      "calories": 81,
+      "protein": 1.2,
+      "fat": 1.4,
+      "carbs": 15.6,
+      "fiber": 0.5,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Upma",
+      "weight_g": 100,
+      "calories": 85,
+      "protein": 2.4,
+      "fat": 1.4,
+      "carbs": 15.9,
+      "fiber": 1.1,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Vermicelli upma",
+      "weight_g": 100,
+      "calories": 111,
+      "protein": 2.5,
+      "fat": 2.3,
+      "carbs": 20.1,
+      "fiber": 2.7,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Cooked ponni rice",
+      "weight_g": 100,
+      "calories": 96,
+      "protein": 1.9,
       "fat": 0.2,
-      "unitAmount": 10
+      "carbs": 21.8,
+      "fiber": 0.1,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Sambar",
+      "weight_g": 100,
+      "calories": 76,
+      "protein": 3.7,
+      "fat": 2.0,
+      "carbs": 10.8,
+      "fiber": 2.5,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Kerala beef roast",
+      "weight_g": 100,
+      "calories": 209,
+      "protein": 13.9,
+      "fat": 15.1,
+      "carbs": 4.9,
+      "fiber": 1.7,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Moru curry",
+      "weight_g": 100,
+      "calories": 49,
+      "protein": 1.5,
+      "fat": 3.5,
+      "carbs": 3.1,
+      "fiber": 0.6,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Rasam",
+      "weight_g": 100,
+      "calories": 24,
+      "protein": 1.0,
+      "fat": 0.5,
+      "carbs": 3.8,
+      "fiber": 0.7,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Mathanga payar olan",
+      "weight_g": 100,
+      "calories": 100,
+      "protein": 3.7,
+      "fat": 5.9,
+      "carbs": 8.9,
+      "fiber": 1.2,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Pine apple salad",
+      "weight_g": 100,
+      "calories": 61,
+      "protein": 0.3,
+      "fat": 0.3,
+      "carbs": 14.1,
+      "fiber": 2.9,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Apple",
+      "weight_g": 100,
+      "calories": 50,
+      "protein": 0.2,
+      "fat": 0.5,
+      "carbs": 13.4,
+      "fiber": 3.2,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Guava",
+      "weight_g": 100,
+      "calories": 68,
+      "protein": 2.6,
+      "fat": 1.0,
+      "carbs": 14.3,
+      "fiber": 5.4,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Anar",
+      "weight_g": 100,
+      "calories": 83,
+      "protein": 1.7,
+      "fat": 1.2,
+      "carbs": 18.7,
+      "fiber": 4.0,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
+    },
+    {
+      "name": "Robusta banana",
+      "weight_g": 100,
+      "calories": 116,
+      "protein": 1.2,
+      "fat": 0.3,
+      "carbs": 27.2,
+      "fiber": 1.9,
+      "minUnit": 1,
+      "maxUnit": 10,
+      "unitAmount": 50
     }
   ]
+
+
+
+
+
+
   const [foods, setFoods] = React.useState([]);
   const [fidx, setfidx] = useState(-1);
 
@@ -545,7 +831,7 @@ const Meals = (props) => {
   const addRow = () => {
     setFoods([
       ...foods,
-      { name: "", calories: "", carbs: "", protein: "", fat: "", fiber: "", unitAmount: "", maxUnit: "" }
+      { name: "", calories: "", carbs: "", protein: "", fat: "", fiber: "", unitAmount: "", maxUnit: "1", minUnit: "1" }
     ]);
   };
 
@@ -600,8 +886,9 @@ const Meals = (props) => {
       }
 
       const food = foods[index];
-      const maxUnit = parseInt(food.maxUnit || 0);
-      for (let u = 1; u <= maxUnit; u++) {
+      const maxUnit = parseInt(food.maxUnit || 1);
+      const minUnit = parseInt(food.minUnit || 1);
+      for (let u = minUnit; u <= maxUnit; u++) {
         const nut = calculateNutrients(food, u);
         backtrack(index + 1, [...currentUnits, u], {
           calories: totals.calories + nut.calories,
@@ -617,7 +904,7 @@ const Meals = (props) => {
 
     combos.sort((a, b) => a.diff - b.diff);
 
-    setResults(combos.slice(0, 10)); // top 10 closest
+    setResults(combos.slice(0, 50)); // top 10 closest
   };
 
   const formatWithDiff = (value, required) => {
@@ -655,6 +942,7 @@ const Meals = (props) => {
             <th>Fat /100g</th>
             <th>Fiber /100g</th>
             <th>Unit Amount (g)</th>
+            <th>Min Unit</th>
             <th>Max Unit</th>
             <th>Action</th>
           </tr>
@@ -669,6 +957,7 @@ const Meals = (props) => {
               <td style={{ padding: "0px", height: "36px" }}><input type="number" value={food.fat} onChange={(e) => handleChange(index, "fat", e.target.value)} style={{ width: "100%", height: "100%" }} /></td>
               <td style={{ padding: "0px", height: "36px" }}><input type="number" value={food.fiber} onChange={(e) => handleChange(index, "fiber", e.target.value)} style={{ width: "100%", height: "100%" }} /></td>
               <td style={{ padding: "0px", height: "36px" }}><input type="number" value={food.unitAmount} onChange={(e) => handleChange(index, "unitAmount", e.target.value)} style={{ width: "100%", height: "100%" }} /></td>
+              <td style={{ padding: "0px", height: "36px" }}><input type="number" value={food.minUnit} onChange={(e) => handleChange(index, "minUnit", e.target.value)} style={{ width: "100%", height: "100%" }} /></td>
               <td style={{ padding: "0px", height: "36px" }}><input type="number" value={food.maxUnit} onChange={(e) => handleChange(index, "maxUnit", e.target.value)} style={{ width: "100%", height: "100%" }} /></td>
               <td style={{ padding: "0px", height: "36px" }}><button onClick={() => removeRow(index)}>❌</button></td>
             </tr>
@@ -677,8 +966,8 @@ const Meals = (props) => {
       </table>
       <button onClick={addRow} style={{ marginTop: "10px" }}>➕ Add Row</button>
       {
-        options.map((opt) => (
-          <button key={opt.name} onClick={() => {
+        options.map((opt, i) => (
+          <button key={i} onClick={() => {
               const cfoods = [...foods]
               cfoods[fidx] = opt
               setFoods(cfoods)
