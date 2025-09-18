@@ -1,6 +1,7 @@
 import React from "react";
 import Sketchpad from "src/components/Sketchpad";
 import SecretNet from "src/components/SecretNet";
+import Meals from "src/components/Meals";
 
 const Intro = () => {
   return(
@@ -62,16 +63,6 @@ const Pages = [
     element: <Intro />,
   },
   {
-    element: <Something />,
-    path: "something",
-    title: "Something"
-  },
-  {
-    element: <Another />,
-    path: "another",
-    title: "Another"
-  },
-  {
     element: <Draw />,
     path: "draw",
     title: "Draw"
@@ -80,6 +71,11 @@ const Pages = [
     element: <SecretNet />,
     path: "secret_net",
     title: "DBLess"
+  },
+  {
+    element: <Meals />,
+    path: "meals",
+    title: "Meal Combination"
   }
 ]
 
